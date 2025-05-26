@@ -13,6 +13,7 @@ const AiPage = () => {
 
   async function generateContent() { 
   
+  // try to set a better loader
   setAnswer("loading...");
   try {
   const response = await axios({

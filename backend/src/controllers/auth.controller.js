@@ -7,7 +7,7 @@ export async function signup(req,res) {
    
     try{
         if(!email || !password || !fullName){
-            return res.status(400).json({ message:"All fiels are required"})
+            return res.status(400).json({ message:"All fields are required"})
         }
         if(password.length<6){
             return res.status(400).json({message: "Password must be at least 6 characters"});
@@ -43,8 +43,6 @@ export async function signup(req,res) {
         } catch (error) {
             console.log("Error creating Stream user:",error)
         }
-
-        
 
         const token = jwt.sign({userId:newUser._id},process.env.JWT_SECRET_KEY,{
             expiresIn:"7d"
@@ -123,7 +121,9 @@ export async function onboard(req,res) {
             })
         }
 
-        const updatedUser = await User.findByIdAndUpdate(userId,{
+        const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        {
             ...req.body,
             isOnboarded: true,
         },{new:true})

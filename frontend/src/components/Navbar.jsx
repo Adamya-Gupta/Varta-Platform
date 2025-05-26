@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser"
-import { BellIcon, House, LogIn, LogOutIcon, Podcast } from "lucide-react";
+import { BellIcon, House, LogIn, LogOutIcon, Menu, Podcast } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import useLogout from "../hooks/useLogout";
 
@@ -38,14 +38,14 @@ const Navbar = () => {
                     <div className="navbar-start hidden max-lg:flex">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
+                                <Menu />
                             </div>
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                                <li><Link to={"/home"}> Homepage</Link></li>
-                                <li><Link to={"/friends"}>Friends</Link></li>
-                                <li><Link to={"/ai"}>ChatBot</Link></li>
+                                className="menu menu-md dropdown-content bg-base-100 rounded-box z-1 mt-3 w-fit p-2 shadow">
+                                <li ><Link to={"/home"} className="text-xl font-bold"> Homepage</Link></li>
+                                <li><Link to={"/friends"} className="text-xl font-bold" >Friends</Link></li>
+                                <li><Link to={"/ai"} className="text-xl font-bold" >ChatBot</Link></li>
 
                             </ul>
                         </div>
