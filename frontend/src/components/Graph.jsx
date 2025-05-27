@@ -35,8 +35,10 @@ const Graph = ({ userId }) => {
       if (!userId) return;
       setLoading(true);
       try {
+        console.log("📥 Fetching check-ins for:", userId);
         const data = await getUserCheckIns(userId);
         const dates = data?.dates || [];
+        console.log("📦 Received check-in dates:", dates);
         setCheckIns(dates);
         setHasCheckedInToday(dates.includes(format(new Date(), "yyyy-MM-dd")));
       } catch (err) {
@@ -54,13 +56,19 @@ const Graph = ({ userId }) => {
     if (!userId) return;
     setLoading(true);
     try {
+      console.log("🔄 Attempting to post check-in for:", userId);
       await postUserCheckIn(userId);
+      console.log("✅ Successfully posted check-in!");
+
       const updated = await getUserCheckIns(userId);
       const updatedDates = updated?.dates || [];
+      console.log("📅 Updated check-in dates fetched:", updatedDates);
+
       setCheckIns(updatedDates);
-      setHasCheckedInToday(
-        updatedDates.includes(format(new Date(), "yyyy-MM-dd"))
-      );
+      const todayStr = format(new Date(), "yyyy-MM-dd");
+      const checkedInToday = updatedDates.includes(todayStr);
+      console.log("📆 Checked in today?", checkedInToday, "| Today:", todayStr);
+      setHasCheckedInToday(checkedInToday);
     } catch (err) {
       console.error("Failed to check in", err);
       setError("Check-in failed. Please try again.");
@@ -104,8 +112,8 @@ const Graph = ({ userId }) => {
         {hasCheckedInToday
           ? "Already Checked In Today"
           : loading
-          ? "Checking in..."
-          : "Check In"}
+            ? "Checking in..."
+            : "Check In"}
       </button>
 
       {/* Scrollable graph container */}
@@ -136,9 +144,8 @@ const Graph = ({ userId }) => {
                     <div
                       key={j}
                       title={day.date}
-                      className={`w-4 h-4 rounded-sm transition-colors duration-300 ${
-                        day.checkedIn ? "bg-primary" : "bg-gray-700"
-                      }`}
+                      className={`w-4 h-4 rounded-sm transition-colors duration-300 ${day.checkedIn ? "bg-primary" : "bg-gray-700"
+                        }`}
                     ></div>
                   ))}
                 </div>

@@ -16,7 +16,11 @@ export const getCheckIns = async (req, res) => {
 export const postCheckIn = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const today = new Date().toISOString().split("T")[0];
+    // const today = new Date().toISOString().split("T")[0];
+    // const today = new Date().toISOString().slice(0,10); //'yyyy-MM-dd' for utc
+    const today = new Date().toLocaleDateString("en-CA"); // local yyyy-MM-dd for locat time zone
+
+    console.log("✅ POST check-in for", userId, "Date:", today);
 
     let checkIn = await CheckIn.findOne({ user: userId });
 
