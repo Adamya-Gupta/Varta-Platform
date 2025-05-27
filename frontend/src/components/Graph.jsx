@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserCheckIns, postUserCheckIn } from "../lib/api";
-import { format, isToday, parseISO } from "date-fns";
-import { motion, AnimatePresence } from "framer-motion";
+import { format } from "date-fns";
 
 const generateDateGrid = (checkInDates) => {
   const today = new Date();
@@ -23,34 +22,6 @@ const generateDateGrid = (checkInDates) => {
   return dates;
 };
 
-const calculateStreaks = (checkInDates) => {
-  const sortedDates = [...checkInDates]
-    .map((date) => parseISO(date))
-    .sort((a, b) => a - b);
-
-  let longest = 0,
-    current = 0;
-  let prevDate = null;
-
-  for (const date of sortedDates) {
-    if (prevDate && date.getTime() - prevDate.getTime() === 86400000) {
-      current++;
-    } else {
-      current = 1;
-    }
-    prevDate = date;
-    if (current > longest) longest = current;
-  }
-
-  let tempStreak = 0;
-  let date = new Date();
-  while (checkInDates.includes(format(date, "yyyy-MM-dd"))) {
-    tempStreak++;
-    date.setDate(date.getDate() - 1);
-  }
-
-  return { currentStreak: tempStreak, longestStreak: longest };
-};
 
 const Graph = ({ userId }) => {
   const [checkIns, setCheckIns] = useState([]);
@@ -105,7 +76,6 @@ const Graph = ({ userId }) => {
     weeks.push(dateGrid.slice(i, i + 7));
   }
 
-  const { currentStreak, longestStreak } = calculateStreaks(checkIns);
   const dayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
@@ -125,31 +95,6 @@ const Graph = ({ userId }) => {
       >
         {hasCheckedInToday ? "Already Checked In Today" : loading ? "Checking in..." : "Check In"}
       </button>
-
-      <div className="mb-2 flex justify-start gap-4 opacity-80">
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={currentStreak}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="text-sm font-semibold"
-          >
-            Current Streak: {currentStreak} 🔥
-          </motion.p>
-        </AnimatePresence>
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={longestStreak}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="text-sm font-semibold"
-          >
-            Longest Streak: {longestStreak} 🌟
-          </motion.p>
-        </AnimatePresence>
-      </div>
 
       <div className="overflow-x-auto">
         <div className="flex justify-center">

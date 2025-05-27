@@ -34,12 +34,12 @@
 }
 
 .str-chat__container {
-  /* max-width: 1200px; */
+  max-width: 90%;
   width: 85%;
   height: 80% !important;
-  margin: 0 auto !important;
+  margin: 0 0 !important;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); */
   overflow: hidden;
   
 }
