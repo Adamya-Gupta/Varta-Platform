@@ -34,8 +34,8 @@
 }
 
 .str-chat__container {
-  max-width: 1200px;
-  width: 95%;
+  /* max-width: 1200px; */
+  width: 85%;
   height: 80% !important;
   margin: 0 auto !important;
   border-radius: 8px;
