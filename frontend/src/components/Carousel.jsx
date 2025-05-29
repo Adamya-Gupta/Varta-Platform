@@ -70,16 +70,18 @@ const Carousel = () => {
     <div className='embla bg-base-200'>
       <div className="embla__viewport mx-auto mt-12 max-w-lg" ref={emblaRef}>
         <div className="embla__container">
+
           <div className="embla__slide flex items-center justify-center">
             <img src="Video_call.png" alt="Slide 1" />
           </div>
+
           <div className="embla__slide">
             <img src="Chat bot-amico.png" alt="Slide 2" />
           </div>
-          <div className="embla__slide"><img src="Translator-amico.png" alt="" /></div>
-          <div className="embla__slide"><img src="messaging.png" alt="" /></div>
-          {/* <div className="embla__slide"><img src="Translator-bro-blue.png" alt="" /></div> */}
-          <div className="embla__slide"><img src="Palette-amico.png" alt="" /></div>
+
+          <div className="embla__slide"><img src="Translator-amico.png" alt="Slide3" /></div>
+          <div className="embla__slide"><img src="messaging.png" alt="Slide4" /></div>
+          <div className="embla__slide"><img src="Palette-amico.png" alt="Slide5" /></div>
         </div>
       </div>
     </div>

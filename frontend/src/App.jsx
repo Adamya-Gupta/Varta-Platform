@@ -45,24 +45,28 @@ const isOnboarded = authUser?.isOnboarded
            <HomePage/>
          </Layout>
         ) : (
-          <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+          <Navigate to={!isAuthenticated ? "/" : "/onboarding"} />
         )} />
 
         <Route path="/signup" element={!isAuthenticated ? <SignUpPage /> : <Navigate to={isOnboarded ? "/": "/onboarding"} />} />
+
         <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to={isOnboarded ? "/": "/onboarding"} />} />
+
         <Route path="/chat/:id" element={isAuthenticated && isOnboarded ? (
           <Layout showSidebar={false}>
             <ChatPage />
           </Layout>
         ) : (
-          <Navigate to={!isAuthenticated ? "/login" : "/onboarding"}/>
+          <Navigate to={!isAuthenticated ? "/" : "/onboarding"}/>
         ) } />
-        <Route path="/call/:id" element={isAuthenticated && isOnboarded ? (<CallPage />) : (<Navigate to={!isAuthenticated ? "/login" : "/onboardimg"} />) } />
+        
+        <Route path="/call/:id" element={isAuthenticated && isOnboarded ? (<CallPage />) : (<Navigate to={!isAuthenticated ? "/" : "/onboardimg"} />) } />
+
         <Route path="/notifications" element={isAuthenticated && isOnboarded ? (
           <Layout showSidebar={true}>
             <NotificationPage/>
           </Layout>
-        ): (<Navigate to={!isAuthenticated ? "/login": "/onboarding"} />)} />
+        ): (<Navigate to={!isAuthenticated ? "/": "/onboarding"} />)} />
 
         <Route path="/onboarding" element={isAuthenticated ? (!isOnboarded ? ( <OnboardingPage/> ):( <Navigate to="/" /> ) ) : ( <Navigate to="/login"/> )} />
 
@@ -71,7 +75,7 @@ const isOnboarded = authUser?.isOnboarded
            <AiPage/>
          </Layout>
         ) : (
-          <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+          <Navigate to={!isAuthenticated ? "/" : "/onboarding"} />
         )} />
 
         <Route path="/friends" element={isAuthenticated && isOnboarded ? (
@@ -79,7 +83,7 @@ const isOnboarded = authUser?.isOnboarded
            <FriendsPage/>
          </Layout>
         ) : (
-          <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+          <Navigate to={!isAuthenticated ? "/" : "/onboarding"} />
         )} />
 
       </Routes>

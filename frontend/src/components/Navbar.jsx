@@ -72,7 +72,7 @@ const Navbar = () => {
 
                         {isLandingPage && (
                             <>
-                            <Link to={"/home"}>
+                            <Link to={"/login"}>
                             <button className="btn btn-primary max-md:p-2"><LogIn/> Login</button>
                             </Link>
                             </>
