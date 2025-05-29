@@ -14,7 +14,11 @@ const Carousel = () => {
      align: 'center',
      skipSnaps: false,   
 
-    }, [Autoplay({ delay: 3000 })])
+    }, [Autoplay({ 
+      delay: 3000 ,
+      stopOnInteraction: false,  // ✅ This prevents stopping autoplay on interaction
+      stopOnMouseEnter: false     // (Optional) Allows autoplay even when hovered
+    })])
   const tweenFactor = useRef(0)
 
   const setTweenFactor = useCallback((api) => {
