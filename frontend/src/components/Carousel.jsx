@@ -71,7 +71,7 @@ const Carousel = () => {
   }, [emblaApi, setTweenFactor, tweenOpacity])
 
   return (
-    <div className='embla bg-base-200'>
+    <div className='embla '>
       <div className="embla__viewport mx-auto mt-12 max-w-lg" ref={emblaRef}>
         <div className="embla__container">
 
